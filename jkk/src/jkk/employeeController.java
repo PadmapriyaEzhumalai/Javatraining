@@ -8,16 +8,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Collections;
+import java.util.function.Predicate;
 
-
+import Day8.EmployeeDaoImpl;
 
 public class employeeController implements EmployeeInterface {
 	employee emp;
 	List emplist = new ArrayList();
-	
+	EmployeeDaoImpl dao =new EmployeeDaoImpl();
 	public void addEmployee()
-	{		
+	{	
 		emp = new employee();
+        //Predicate<employee> auth= u->u.eid.equals("101") && u.ename.equals("padma");
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Eid");
 		int eid= sc.nextInt();
@@ -26,16 +28,25 @@ public class employeeController implements EmployeeInterface {
 		System.out.println("Enter Ename");
 		String ename= sc.next();
 		emp.setEname(ename);
-		emplist.add(emp);
+	//emplist.add(emp);
+		dao.insertEmployee(emp);
+//		  if(auth.test(emp)){
+//	            System.out.println("Valid User"); 
+//	        }
+//	        else
+//	         System.out.println("Invalid user");
+//	    }
 		System.out.println("Employee Added Succesfully");
 	}
 	
 	public void viewEmployee() {
 		//System.out.println(emp);
-		Iterator i = emplist.iterator();
-		while(i.hasNext()) {
-			System.out.println(i.next());
-		}
+//		Iterator i = emplist.iterator();
+//		while(i.hasNext()) {
+//			System.out.println(i.next());
+//		}
+
+		emplist.forEach(lis ->System.out.println(lis));
 		
 	}
 
@@ -72,6 +83,6 @@ public class employeeController implements EmployeeInterface {
 		System.out.println(emplist);
 		
 	}
-	}
+}
 
 			

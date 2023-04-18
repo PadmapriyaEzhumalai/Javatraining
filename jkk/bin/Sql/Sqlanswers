@@ -1,0 +1,9 @@
+1.Write a query to list the department names which have at least one employee.
+
+select dname from dept d where exists (select 1  from emp e where e.deptno=d.deptno);
+List all the emps in dept 10 who are working as Clerks.
+select * from emp where deptno='10' and  job='CLERK' ;  
+List the emps whose exp>6.5 Y.
+select * from emp where ((to_date( HIREDATE,'DD-MM-YYYY')-to_date( SYSDATE,'DD-MM-YYYY'))/365)>6.5;
+List the emps who joined in 2nd half of 1981.
+select * from emp where HIREDATE between to_date( '01-06-1981','DD-MM-YYYY') and to_date( '31-12-1981','DD-MM-YYYY');
